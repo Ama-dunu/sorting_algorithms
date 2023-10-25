@@ -15,16 +15,16 @@ void sort_deck(deck_node_t **deck);
  */
 int compare_strings(const char *s1, const char *s2)
 {
-    while (*s1 && *s2 && *s1 == *s2)
-    {
-        s1++;
-        s2++;
-    }
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
 
-    if (*s1 != *s2)
-        return (*s1 - *s2);
+	if (*s1 != *s2)
+		return (*s1 - *s2);
 
-    return 0;
+	return 0;
 }
 
 /**
@@ -35,34 +35,34 @@ int compare_strings(const char *s1, const char *s2)
  */
 int get_card_value(deck_node_t *card)
 {
-    if (compare_strings(card->card->value, "Ace") == 0)
-        return 0;
-    if (compare_strings(card->card->value, "1") == 0)
-        return 1;
-    if (compare_strings(card->card->value, "2") == 0)
-        return 2;
-    if (compare_strings(card->card->value, "3") == 0)
-        return 3;
-    if (compare_strings(card->card->value, "4") == 0)
-        return 4;
-    if (compare_strings(card->card->value, "5") == 0)
-        return 5;
-    if (compare_strings(card->card->value, "6") == 0)
-        return 6;
-    if (compare_strings(card->card->value, "7") == 0)
-        return 7;
-    if (compare_strings(card->card->value, "8") == 0)
-        return 8;
-    if (compare_strings(card->card->value, "9") == 0)
-        return 9;
-    if (compare_strings(card->card->value, "10") == 0)
-        return 10;
-    if (compare_strings(card->card->value, "Jack") == 0)
-        return 11;
-    if (compare_strings(card->card->value, "Queen") == 0)
-        return 12;
+	if (compare_strings(card->card->value, "Ace") == 0)
+		return 0;
+	if (compare_strings(card->card->value, "1") == 0)
+		return 1;
+	if (compare_strings(card->card->value, "2") == 0)
+		return 2;
+	if (compare_strings(card->card->value, "3") == 0)
+		return 3;
+	if (compare_strings(card->card->value, "4") == 0)
+		return 4;
+	if (compare_strings(card->card->value, "5") == 0)
+		return 5;
+	if (compare_strings(card->card->value, "6") == 0)
+		return 6;
+	if (compare_strings(card->card->value, "7") == 0)
+		return 7;
+	if (compare_strings(card->card->value, "8") == 0)
+		return 8;
+	if (compare_strings(card->card->value, "9") == 0)
+		return 9;
+	if (compare_strings(card->card->value, "10") == 0)
+		return 10;
+	if (compare_strings(card->card->value, "Jack") == 0)
+		return 11;
+	if (compare_strings(card->card->value, "Queen") == 0)
+		return 12;
 
-    return 13;
+	return 13;
 }
 
 /**
@@ -71,32 +71,32 @@ int get_card_value(deck_node_t *card)
  */
 void insertion_sort_deck_by_kind(deck_node_t **deck)
 {
-    deck_node_t *current, *insert, *temp;
+	deck_node_t *current, *insert, *temp;
 
-    for (current = (*deck)->next; current != NULL; current = temp)
-    {
-        temp = current->next;
-        insert = current->prev;
+	for (current = (*deck)->next; current != NULL; current = temp)
+	{
+		temp = current->next;
+		insert = current->prev;
 
-        while (insert != NULL && insert->card->kind > current->card->kind)
-        {
-            insert->next = current->next;
+		while (insert != NULL && insert->card->kind > current->card->kind)
+		{
+			insert->next = current->next;
 
-            if (current->next != NULL)
-                current->next->prev = insert;
+			if (current->next != NULL)
+				current->next->prev = insert;
 
-            current->prev = insert->prev;
-            current->next = insert;
+			current->prev = insert->prev;
+			current->next = insert;
 
-            if (insert->prev != NULL)
-                insert->prev->next = current;
-            else
-                *deck = current;
+			if (insert->prev != NULL)
+				insert->prev->next = current;
+			else
+				*deck = current;
 
-            insert->prev = current;
-            insert = current->prev;
-        }
-    }
+			insert->prev = current;
+			insert = current->prev;
+		}
+	}
 }
 
 /**
@@ -105,34 +105,34 @@ void insertion_sort_deck_by_kind(deck_node_t **deck)
  */
 void insertion_sort_deck_by_value(deck_node_t **deck)
 {
-    deck_node_t *current, *insert, *temp;
+	deck_node_t *current, *insert, *temp;
 
-    for (current = (*deck)->next; current != NULL; current = temp)
-    {
-        temp = current->next;
-        insert = current->prev;
+	for (current = (*deck)->next; current != NULL; current = temp)
+	{
+		temp = current->next;
+		insert = current->prev;
 
-        while (insert != NULL &&
-               insert->card->kind == current->card->kind &&
-               get_card_value(insert) > get_card_value(current))
-        {
-            insert->next = current->next;
+		while (insert != NULL &&
+				insert->card->kind == current->card->kind &&
+				get_card_value(insert) > get_card_value(current))
+		{
+			insert->next = current->next;
 
-            if (current->next != NULL)
-                current->next->prev = insert;
+			if (current->next != NULL)
+				current->next->prev = insert;
 
-            current->prev = insert->prev;
-            current->next = insert;
+			current->prev = insert->prev;
+			current->next = insert;
 
-            if (insert->prev != NULL)
-                insert->prev->next = current;
-            else
-                *deck = current;
+			if (insert->prev != NULL)
+				insert->prev->next = current;
+			else
+				*deck = current;
 
-            insert->prev = current;
-            insert = current->prev;
-        }
-    }
+			insert->prev = current;
+			insert = current->prev;
+		}
+	}
 }
 
 /**
@@ -141,10 +141,10 @@ void insertion_sort_deck_by_value(deck_node_t **deck)
  */
 void sort_deck(deck_node_t **deck)
 {
-    if (deck == NULL || *deck == NULL || (*deck)->next == NULL)
-        return;
+	if (deck == NULL || *deck == NULL || (*deck)->next == NULL)
+		return;
 
-    insertion_sort_deck_by_kind(deck);
-    insertion_sort_deck_by_value(deck);
+	insertion_sort_deck_by_kind(deck);
+	insertion_sort_deck_by_value(deck);
 }
 
