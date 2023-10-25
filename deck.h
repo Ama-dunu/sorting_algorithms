@@ -46,5 +46,7 @@ typedef struct deck_node_s
 } deck_node_t;
 
 void sort_deck(deck_node_t **deck);
+void radix_sort(int *array, size_t size);
+void bitonic_sort(int *array, size_t size);
 
 #endif /* DECK_H */
