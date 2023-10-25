@@ -72,9 +72,5 @@ void bitonic_merge(int *array, size_t size, size_t start, size_t seq, char flow)
 void bitonic_seq(int *array, size_t size, size_t start, size_t seq, char flow);
 void bitonic_sort(int *array, size_t size);
 int compare_strings(const char *s1, const char *s2);
-int get_card_value(deck_node_t *card);
-void insertion_sort_deck_by_kind(deck_node_t **deck);
-void insertion_sort_deck_by_value(deck_node_t **deck);
-void sort_deck(deck_node_t **deck);
 
 #endif /* SORT_H */
